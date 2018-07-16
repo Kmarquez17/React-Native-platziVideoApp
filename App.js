@@ -3,8 +3,10 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-
 import React, { Component } from 'react';
+import Header from './src/sections/components/header'
+import SuggestionList from './src/video/containers/suggestion-list'
+
 import {
   Text,
 } from 'react-native'
@@ -15,10 +17,10 @@ class App extends Component {
   render() {
     return (
       <Home>
-        <Text>Header</Text>
+        <Header/>
         <Text>Buscador</Text>
         <Text>Categorias</Text>
-        <Text>Sugerencias</Text>
+        <SuggestionList/>
       </Home>
     );
   }
