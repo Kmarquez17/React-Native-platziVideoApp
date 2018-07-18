@@ -4,28 +4,36 @@ import {
     Text
 } from 'react-native'
 
+//Componentes Tontos es decir componentes solo de diseño
+import Layout from '../components/suggestion-list-layout'
+import Empty from '../components/empty'
+import Separator from '../components/vertical-separator'
+import Suggestion from '../components/suggestion'
+
 class SuggestionList extends Component{
-    render(){
-        const list = [
-            {
-                title:'Kevin',
-                key: '1'
-            },{
-                title:'Alberto',
-                key: '2'
-            },{
-                title:'Marquez',
-                key: '3'
-            },{
-                title:'Rodriguez',
-                key: '4'
-            }
-        ]
+    renderEmpty = () => <Empty text="No hay Sugerencias" />
+    itemseparator = () => <Separator />
+    renderItem = ({item}) => {
         return(
-            <FlatList
-                data={list}
-                renderItem={({item}) => <Text>{item.title}</Text>}
-            />
+            <Suggestion {...item}/>
+        )
+    }
+
+    keyExtractor = item => item.id.toString()
+
+    render(){        
+        return(
+            <Layout
+                title="Recomendado para ti"
+            >
+                <FlatList
+                    keyExtractor={this.keyExtractor}
+                    data={this.props.list}
+                    ListEmptyComponent={this.renderEmpty}
+                    ItemSeparatorComponent={this.itemseparator}
+                    renderItem={this.renderItem}
+                />
+            </Layout>
         )
     }
 }
