@@ -10,15 +10,16 @@ import Header from './src/sections/components/header'
 import CategoryList from './src/video/containers/category-list'
 import SuggestionList from './src/video/containers/suggestion-list'
 import API from './src/utils/api'
-import {Text} from 'react-native'
+import { View,Text } from 'react-native'
+import Video from 'react-native-video'
 
 // console.disableYellowBox = true
 
 
 class App extends Component {
   state = {
-    suggestionList : [],
-    CategoryList : [],
+    suggestionList: [],
+    CategoryList: [],
   }
   async componentDidMount() {
     const movies = await API.getSuggestion(5);
@@ -34,12 +35,31 @@ class App extends Component {
   render() {
     return (
       <Home>
-        <Header/>
+        <Header />
+        <View
+          style={{
+            flex: 1,
+            height: 100,
+          }}
+        >
+          <Video
+            source={{ uri: 'https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4' }}
+            style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              bottom: 0,
+              top: 0,
+            }}
+            resizeMode="contain"
+          />
+        </View>
+
         <Text>Buscador</Text>
         <Text>Categorias</Text>
-        <CategoryList list = {this.state.CategoryList}/>
+        <CategoryList list={this.state.CategoryList} />
         <Text>Movies</Text>
-        <SuggestionList list = {this.state.suggestionList}/>
+        <SuggestionList list={this.state.suggestionList} />
       </Home>
     );
   }
