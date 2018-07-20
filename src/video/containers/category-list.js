@@ -1,32 +1,32 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
+    View,
     FlatList,
-    Text
 } from 'react-native'
 
-//Componentes Tontos es decir componentes solo de diseño
-import Layout from '../components/suggestion-list-layout'
+import Layout from '../components/category-list-layout'
 import Empty from '../components/empty'
-import Separator from '../../sections/components/vertical-separator'
-import Suggestion from '../components/suggestion'
+import Separator from '../../sections/components/horizontal-separator'
+import Category from '../components/category'
 
-class SuggestionList extends Component{
+class CategoryList extends Component{
+    keyExtractor = item => item.id.toString()
     renderEmpty = () => <Empty text="No hay Sugerencias" />
     itemseparator = () => <Separator />
+
     renderItem = ({item}) => {
         return(
-            <Suggestion {...item}/>
+            <Category {...item}/>
         )
     }
 
-    keyExtractor = item => item.id.toString()
-
-    render(){        
+    render(){
         return(
             <Layout
-                title="Recomendado para ti"
+                title="Categorias"
             >
                 <FlatList
+                    horizontal
                     keyExtractor={this.keyExtractor}
                     data={this.props.list}
                     ListEmptyComponent={this.renderEmpty}
@@ -34,9 +34,9 @@ class SuggestionList extends Component{
                     renderItem={this.renderItem}
                 />
             </Layout>
-        )
+                
+       )
     }
 }
 
-
-export default SuggestionList
+export default CategoryList
