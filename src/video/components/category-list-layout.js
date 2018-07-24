@@ -9,13 +9,15 @@ import {
 
 function CategoryListLayout(props) {
     return (
-        <ImageBackground
-            source={require('../../../assets/backgronund.png')}
-            style={styles.container}
-        >
-            <Text style={styles.title}>{props.title}</Text>
-            {props.children}
+        <View style={styles.centrar}>
+            <ImageBackground
+                source={require('../../../assets/backgronund.png')}
+                style={styles.container}
+            >
+                <Text style={styles.title}>{props.title}</Text>
+                {props.children}
         </ImageBackground>
+        </View>
 
     )
 }

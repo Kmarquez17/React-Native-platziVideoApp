@@ -11,7 +11,7 @@ import Separator from '../../sections/components/vertical-separator'
 import Suggestion from '../components/suggestion'
 
 class SuggestionList extends Component{
-    renderEmpty = () => <Empty text="No hay Sugerencias" />
+    renderEmpty = () => <Empty/>
     itemseparator = () => <Separator />
     renderItem = ({item}) => {
         return(

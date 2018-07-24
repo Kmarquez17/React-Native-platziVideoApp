@@ -11,7 +11,7 @@ import Category from '../components/category'
 
 class CategoryList extends Component{
     keyExtractor = item => item.id.toString()
-    renderEmpty = () => <Empty text="No hay Sugerencias" />
+    renderEmpty = () => <Empty/>
     itemseparator = () => <Separator />
 
     renderItem = ({item}) => {
