@@ -12,37 +12,49 @@ import SuggestionList from './src/video/containers/suggestion-list'
 import API from './src/utils/api'
 import { Text } from 'react-native'
 import Player from './src/player/containers/player'
+import { Provider } from 'react-redux'
+import store from './src/store'
 
 // console.disableYellowBox = true
 
 
 class App extends Component {
-  state = {
-    suggestionList: [],
-    CategoryList: [],
-  }
+  // state = {
+  //   suggestionList: [],
+  //   CategoryList: [],
+  // }
   async componentDidMount() {
-    const movies = await API.getSuggestion(5);
-    const categories = await API.getMovies();
-    // console.log(movies);
-    // console.log(categories);
-
-    this.setState({
-      suggestionList: movies,
-      CategoryList: categories,
+    const categoryList = await API.getMovies();
+    store.dispatch({
+      type: 'SET_CATEGORY_LIST',
+      payload: {
+        categoryList,
+      }
     })
+    const suggestionList = await API.getSuggestion(5);
+    store.dispatch({
+      type: 'SET_SUGGESTION_LIST',
+      payload: {
+        suggestionList,
+      }
+    })
+
   }
+
   render() {
     return (
-      <Home>
-        <Header />
-        <Player/>
+      <Provider
+        store={store}
+      >
+        <Home>
         <Text>Buscador</Text>
-        <Text>Categorias</Text>
-        <CategoryList list={this.state.CategoryList} />
-        <Text>Movies</Text>
-        <SuggestionList list={this.state.suggestionList} />
-      </Home>
+          <Header />
+          <Player />
+          <CategoryList />
+          <SuggestionList />
+        </Home>
+      </Provider>
+
     );
   }
 }

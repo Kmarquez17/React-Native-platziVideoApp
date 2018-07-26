@@ -9,7 +9,13 @@ import Layout from '../components/suggestion-list-layout'
 import Empty from '../components/empty'
 import Separator from '../../sections/components/vertical-separator'
 import Suggestion from '../components/suggestion'
+import { connect } from 'react-redux'
 
+function mapStateTopProps(state){
+    return{
+        list: state.suggestionList
+    }
+}
 class SuggestionList extends Component{
     renderEmpty = () => <Empty/>
     itemseparator = () => <Separator />
@@ -39,4 +45,4 @@ class SuggestionList extends Component{
 }
 
 
-export default SuggestionList
+export default connect(mapStateTopProps)(SuggestionList)
