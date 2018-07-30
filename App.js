@@ -13,7 +13,9 @@ import API from './src/utils/api'
 import { Text } from 'react-native'
 import Player from './src/player/containers/player'
 import { Provider } from 'react-redux'
-import store from './src/store'
+import { PersistGate } from 'redux-persist/integration/react'
+import { store, persistor } from './src/store'
+import Loading from './src/sections/components/loading'
 
 // console.disableYellowBox = true
 
@@ -46,13 +48,18 @@ class App extends Component {
       <Provider
         store={store}
       >
-        <Home>
-        <Text>Buscador</Text>
-          <Header />
-          <Player />
-          <CategoryList />
-          <SuggestionList />
-        </Home>
+        <PersistGate
+          loading={<Loading/>}
+          persistor={persistor}
+        >
+          <Home>
+            <Text>Buscador</Text>
+            <Header />
+            <Player />
+            <CategoryList />
+            <SuggestionList />
+          </Home>
+        </PersistGate>
       </Provider>
 
     );
