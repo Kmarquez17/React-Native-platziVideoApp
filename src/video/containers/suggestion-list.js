@@ -19,9 +19,21 @@ function mapStateTopProps(state){
 class SuggestionList extends Component{
     renderEmpty = () => <Empty/>
     itemseparator = () => <Separator />
+    
+    viewMovie = (item) =>{
+        this.props.dispatch({
+            type:'SET_SELECTED_MOVIE',
+            payload:{
+                movie: item
+            }
+        })
+    }
     renderItem = ({item}) => {
         return(
-            <Suggestion {...item}/>
+            <Suggestion 
+                {...item}
+                onPress = {() => {this.viewMovie(item)}}
+            />
         )
     }
 
