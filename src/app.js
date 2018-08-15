@@ -19,7 +19,7 @@ class AppLayout extends Component {
                 categoryList,
             }
         })
-        const suggestionList = await API.getSuggestion(5);
+        const suggestionList = await API.getSuggestion(10);
         this.props.dispatch({
             type: 'SET_SUGGESTION_LIST',
             payload: {
