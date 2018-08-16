@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { Text } from 'react-native'
 
 import Home from './screens/containers/home'
 import Movie from './screens/containers/movie'
 import Header from './sections/components/header'
 import CategoryList from './video/containers/category-list'
 import SuggestionList from './video/containers/suggestion-list'
-
+import Search from './sections/containers/search'
 import API from './utils/api'
 import { connect } from 'react-redux'
 
@@ -34,7 +33,7 @@ class AppLayout extends Component {
         return (
             <Home>
                 <Header />
-                <Text>Buscador</Text>
+                <Search />
                 <CategoryList />
                 <SuggestionList />
             </Home>
